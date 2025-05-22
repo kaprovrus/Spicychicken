@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spicy Chicken</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff9f0;
+    }
+    header {
+      height: 250px;
+      background: url('img/your-header-image.jpg') center/cover no-repeat;
+    }
+   .section-title {
+  grid-column: 1 / -1;
+  color: white;
+  font-size: 28px;
+  margin: 30px 0 10px;
+  text-align: left;
+  padding-left: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+    .menu-section {
+      position: relative;
+      padding: 40px 20px;
+      background: url('img/background.jpg') center/cover fixed no-repeat;
+      z-index: 0;
+    }
+    .menu-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      justify-items: center;
+      max-width: 880px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .item {
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s;
+    }
+    .item:hover {
+      transform: scale(1.05);
+    }
+    .item img {
+      width: 100%;
+      border-radius: 10px 10px 0 0;
+    }
+    .item p {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    .cart {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      width: 250px;
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+    .cart h3 {
+      margin-top: 0;
+    }
+    .cart-items {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .checkout {
+      margin-top: 10px;
+      display: none;
+    }
+    .checkout button {
+      width: 100%;
+      padding: 10px;
+      background: #25d366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header></header>
+
+  <section class="menu-section">
+    <div class="menu" id="menu">
+    <h2 class="section-title">Акции</h2>
+      <div class="item" onclick="addToCart('Алматы Пицца', 6490)">
+        <img src="img/comboPizza.jpg" alt="Алматы Пицца">
+        <p>Алматы Пицца - 6 490 ₸</p>
+      </div>
+          <div class="item" onclick="addToCart('Алматы ТYHI', 7000)">
+        <img src="img/comboAlmaty.jpg" alt="Алматы ТYHI">
+        <p>Алматы ТYHI - 7 000 ₸</p>
+      </div>
+     <h2 class="section-title">Комбо</h2>
+      <div class="item" onclick="addToCart('Комбо Лонгер', 2250)">
+        <img src="img/longer.jpg" alt="Комбо Лонгер">
+        <p>Комбо Лонгер - 2 250 ₸</p>
+      </div>
+      <div class="item" onclick="addToCart('Комбо Бургер', 2500)">
+        <img src="img/burger.jpg" alt="Комбо Бургер">
+        <p>Комбо Бургер - 2 500 ₸</p>
+      </div>
+      <div class="item" onclick="addToCart('Комбо 1', 5000)">
+        <img src="img/combo1.jpg" alt="Комбо 1">
+        <p>Комбо 1 - 5 000 ₸</p>
+      </div>
+      <div class="item" onclick="addToCart('Комбо 2', 9450)">
+        <img src="img/combo2.jpg" alt="Комбо 2">
+        <p>Комбо 2 - 9 450 ₸</p>
+      </div>
+      <div class="item" onclick="addToCart('Комбо 3', 14450)">
+        <img src="img/combo3.jpg" alt="Комбо 3">
+        <p>Комбо 3 - 14 450 ₸</p>
+      </div>
+      <div class="item" onclick="addToCart('Сет на двоих', 6490)">
+        <img src="img/combo2x.jpg" alt="Сет на двоих">
+        <p>Сет на двоих - 6 490 ₸</p>
+      </div>
+      <div class="item" onclick="addToCart('Сет семейный', 10450)">
+        <img src="img/comboFamily.jpg" alt="Сет семейный">
+        <p>Сет семейный - 10 450 ₸</p>
+      </div>
+      <div class="item" onclick="addToCart('Сет SpicyChiken', 8450)">
+        <img src="img/comboSpice.jpg" alt="Сет SpicyChiken">
+        <p>Сет SpicyChiken - 8 450 ₸</p>
+      </div>
+      <div class="item" onclick="addToCart('Сет ДляДрузей', 16450)">
+        <img src="img/comboFriends.jpg" alt="Сет ДляДрузей">
+        <p>Сет ДляДрузей - 16 450 ₸</p>
+ </div>
+       <h2 class="section-title">Крылишки</h2>
+       <div class="item" onclick="addToCart('Крылышки 10 шт + 1 соус', 2250)"> 
+       <img src="img/wings10.jpg" alt="Крылышки 10"> 
+       <p>Крылышки 10 шт + 1 соус — 2 250 ₸</p> 
+       </div>
+
+<div class="item" onclick="addToCart('Крылышки 15 шт + 1 соус', 3100)"> 
+    <img src="img/wings15.jpg" alt="Крылышки 15"> 
+    <p>Крылышки 15 шт + 1 соус — 3 100 ₸</p> 
+</div>
+
+<div class="item" onclick="addToCart('Крылышки 20 шт + 2 соуса', 3800)"> 
+    <img src="img/wings20.jpg" alt="Крылышки 20"> 
+    <p>Крылышки 20 шт + 2 соуса — 3 800 ₸</p> 
+</div>
+
+<div class="item" onclick="addToCart('Крылышки 30 шт + 3 соуса', 5800)"> 
+    <img src="img/wings30.jpg" alt="Крылышки 30"> 
+    <p>Крылышки 30 шт + 3 соуса — 5 800 ₸</p> 
+</div>
+
+<div class="item" onclick="addToCart('Крылышки 40 шт + 3 соуса', 7700)"> 
+    <img src="img/wings40.jpg" alt="Крылышки 40"> 
+    <p>Крылышки 40 шт + 3 соуса — 7 700 ₸</p> 
+</div>
+
+<div class="item" onclick="addToCart('Крылышки 50 шт + 4 соуса', 9500)"> 
+    <img src="img/wings50.jpg" alt="Крылышки 50"> 
+    <p>Крылышки 50 шт + 4 соуса — 9 500 ₸</p> 
+</div>
+<h2 class="section-title">Стрипсы</h2>
+<div class="item" onclick="addToCart('Стрипсы 3 шт', 850)"> 
+    <img src="img/strips3.jpg" alt="Стрипсы 3"> 
+    <p>Стрипсы 3 шт — 850 ₸</p> 
+</div>
+
+<div class="item" onclick="addToCart('Стрипсы 5 шт', 1150)"> 
+    <img src="img/strips5.jpg" alt="Стрипсы 5"> 
+    <p>Стрипсы 5 шт — 1 150 ₸</p> 
+</div>
+
+<div class="item" onclick="addToCart('Стрипсы 10 шт', 2150)"> 
+    <img src="img/strips10.jpg" alt="Стрипсы 10"> 
+    <p>Стрипсы 10 шт — 2 150 ₸</p> 
+</div>
+<h2 class="section-title">Пицца</h2>
+
+<div class="item" onclick="addToCart('Маргарита', 1900)">
+  <img src="img/margarita.jpg" alt="Маргарита">
+  <p>Маргарита - 1 900 ₸</p>
+</div>
+
+<div class="item" onclick="addToCart('Пепперони', 1950)">
+  <img src="img/pepperoni.jpg" alt="Пепперони">
+  <p>Пепперони - 1 950 ₸</p>
+</div>
+
+<div class="item" onclick="addToCart('4 сезона', 2100)">
+  <img src="img/4seasons.jpg" alt="4 сезона">
+  <p>4 сезона - 2 100 ₸</p>
+</div>
+
+<div class="item" onclick="addToCart('Куриная', 1950)">
+  <img src="img/chicken.jpg" alt="Куриная">
+  <p>Куриная - 1 950 ₸</p>
+</div>
+
+<div class="item" onclick="addToCart('С грибами', 1900)">
+  <img src="img/mushroom.jpg" alt="С грибами">
+  <p>С грибами - 1 900 ₸</p>
+</div>
+
+<div class="item" onclick="addToCart('Мексиканская', 2100)">
+  <img src="img/mexican.jpg" alt="Мексиканская">
+  <p>Мексиканская - 2 100 ₸</p>
+</div>
+
+<div class="item" onclick="addToCart('Сырная', 2100)">
+  <img src="img/cheese.jpg" alt="Сырная">
+  <p>Сырная - 2 100 ₸</p>
+</div>
+<h2 class="section-title">Ножки</h2>
+<div class="item" onclick="addToCart('Ножки 1шт', 650)">
+    <img src="img/chickenlegs1.jpg" alt="Ножки">
+    <p>Ножки 1 шт - 650 ₸</p>
+  </div>
+  <div class="item" onclick="addToCart('Ножки 3шт', 1650)">
+    <img src="img/chickenlegs3.jpg" alt="Ножки">
+    <p>Ножки 3 шт - 1 650 ₸</p>
+  </div>
+<h2 class="section-title">Наггетсы</h2>
+  <div class="item" onclick="addToCart('Наггетсы 10шт', 1500)">
+    <img src="img/nagets10.jpg" alt="Наггетсы">
+    <p>Наггетсы 10 шт - 1 500 ₸</p>
+  </div>
+  <div class="item" onclick="addToCart('Наггетсы 20шт', 2500)">
+    <img src="img/nagets20.jpg" alt="Наггетсы">
+    <p>Наггетсы 20 шт - 2 500 ₸</p>
+  </div>
+<h2 class="section-title">Дополнительно</h2>
+<div class="item" onclick="addToCart('Крылья в кисло-сладком соусе', 1750)">
+    <img src="img/wings.jpg" alt="Крылья">
+    <p>Крылья в кисло-сладком соусе - 1 750 ₸</p>
+  </div>
+  <div class="item" onclick="addToCart('Чикбургер', 1390)">
+    <img src="img/chikburger.jpg" alt="Чикбургер">
+    <p>Чикбургер - 1 390 ₸</p>
+  </div>
+  <div class="item" onclick="addToCart('Лонгер', 1250)">
+    <img src="img/longer1.jpg" alt="Лонгер">
+    <p>Лонгер - 1 250 ₸</p>
+  </div>
+  <div class="item" onclick="addToCart('Фри 200г', 750)">
+    <img src="img/fri.jpg" alt="Фри">
+    <p>Фри - 750 ₸</p>
+  </div>
+  <div class="item" onclick="addToCart('Картофельные дольки 200г', 800)">
+    <img src="img/potato.jpg" alt="Картофельные дольки">
+    <p>Картофельные дольки - 800 ₸</p>
+  </div>
+  <div class="item" onclick="addToCart('Соус', 150)">
+    <img src="img/sauce.jpg" alt="Соус">
+    <p>Соус - 150 ₸</p>
+  </div>
+  <div class="item" onclick="addToCart('Кола 0.5л', 550)">
+    <img src="img/cola05.jpg" alt="Кола 0.5л">
+    <p>Кола 0.5л - 550 ₸</p>
+  </div>
+  <div class="item" onclick="addToCart('Кола 1л', 800)">
+    <img src="img/cola1.jpg" alt="Кола 1л">
+    <p>Кола 1л - 800 ₸</p>
+  </div>
+      </div>
+  </section>
+
+  <div class="cart">
+    <h3>Корзина</h3>
+    <div class="cart-items" id="cart-items"></div>
+    <p>Итого: <span id="total">0</span> ₸</p>
+    <div class="checkout" id="checkout">
+      <button onclick="checkout()">Заказать в WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      const found = cart.find(item => item.name === name);
+      if (found) {
+        found.count++;
+      } else {
+        cart.push({ name, price, count: 1 });
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartEl = document.getElementById('cart-items');
+      cartEl.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const itemEl = document.createElement('div');
+        itemEl.innerHTML = `${item.name} x${item.count} 
+          <button onclick="removeFromCart(${index})">❌</button>`;
+        cartEl.appendChild(itemEl);
+        total += item.price * item.count;
+      });
+      document.getElementById('total').textContent = total;
+      document.getElementById('checkout').style.display = total >= 7000 ? 'block' : 'none';
+    }
+
+    function removeFromCart(index) {
+      if (cart[index].count > 1) {
+        cart[index].count--;
+      } else {
+        cart.splice(index, 1);
+      }
+      renderCart();
+    }
+
+    function checkout() {
+      let message = 'Здравствуйте! Хочу заказать:\n';
+      cart.forEach(item => {
+        message += `- ${item.name} x${item.count}\n`;
+      });
+      const total = cart.reduce((sum, i) => sum + i.price * i.count, 0);
+      message += `Итого: ${total} ₸`;
+      const phone = '77078072363';
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
