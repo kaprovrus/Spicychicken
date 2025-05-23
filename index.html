@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Spicy Chicken</title>
+
+<link href="style.css" rel="stylesheet"/></head>
+<body>
+<header></header>
+<div id="menu-placeholder"></div>
+<script>
+  fetch("menu-section.html")
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById("menu-placeholder").innerHTML = html;
+    });
+</script>
+<div class="cart-toggle" onclick="toggleCart()">🛒</div>
+<div class="cart" id="cart">
+<div class="cart-header">
+<h3>Корзина</h3>
+<button class="remove-item" onclick="toggleCart()">×</button>
+</div>
+<div class="cart-items" id="cart-items"></div>
+<p class="cart-total">Итого: <span id="total">0</span> ₸</p>
+<div class="checkout" id="checkout">
+<button onclick="checkout()">Заказать в WhatsApp</button>
+</div>
+</div>
+
+<script src="script.js"></script></body>
+</html>
